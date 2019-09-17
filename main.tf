@@ -60,13 +60,14 @@ resource "aws_security_group" "docdb" {
 resource "aws_docdb_cluster" "docdb_cluster" {
   cluster_identifier      = "${var.projectname}-${var.environment}-documentdb-cluster"
   engine                  = "docdb"
-  master_username         = "${var.projectname}-${var.environment}-admin"
+  master_username         = "${var.projectname}${var.environment}admin"
   master_password         = "${var.docdb_masterPassword}"
   port                    = "${var.docdb_port}"
   backup_retention_period = 5
   preferred_backup_window = "01:00-03:00"
   skip_final_snapshot     = false
   storage_encrypted       = "${var.docdb_storageEncrypted}"
+  db_subnet_group_name    = "${aws_docdb_subnet_group.docdb.name}" 
   vpc_security_group_ids  = ["${aws_security_group.docdb.id}"]
 
   tags {
