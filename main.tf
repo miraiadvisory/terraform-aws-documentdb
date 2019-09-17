@@ -8,8 +8,8 @@ resource "aws_docdb_subnet_group" "docdb" {
   ]
 
   tags {
-    Project = "${var.project}"
-    Stages  = "${var.stage}"
+    Project = "${var.projectname}"
+    Stages  = "${var.environment}"
   }
 }
 
@@ -52,8 +52,8 @@ resource "aws_security_group" "docdb" {
   }
 
   tags {
-    Project = "${var.project}"
-    Stages  = "${var.stage}"
+    Project = "${var.projectname}"
+    Stages  = "${var.environment}"
   }
 }
 
@@ -67,11 +67,11 @@ resource "aws_docdb_cluster" "docdb_cluster" {
   preferred_backup_window = "01:00-03:00"
   skip_final_snapshot     = false
   storage_encrypted       = "${var.docdb_storageEncrypted}"
-  vpc_security_group_ids  = "${aws_security_group.docdb.id}"
+  vpc_security_group_ids  = ["${aws_security_group.docdb.id}"]
 
   tags {
-    Project = "${var.project}"
-    Stages  = "${var.stage}"
+    Project = "${var.projectname}"
+    Stages  = "${var.environment}"
   }
 }
 

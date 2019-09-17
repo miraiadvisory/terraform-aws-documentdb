@@ -11,6 +11,7 @@ variable "environment" {
 variable "vpc" {
   description = "The ID of the VPC where will be created"
   default     = ""
+  type        = "string"
 }
 
 variable "vpn-sg" {
@@ -45,13 +46,13 @@ variable "docdb_familyversion" {
 variable "docdb_tlsEnable" {
   description = "Set TLS communication to/from DocumentDB cluster"
   default     = "false"
-  type        = "bool"
+  type        = "string"
 }
 
 variable "docdb_profilerEnable" {
   description = "Set mongodb profiler on/off"
   default     = "false"
-  type        = "bool"
+  type        = "string"
 }
 
 variable "docdb_masterPassword" {
@@ -69,7 +70,7 @@ variable "docdb_port" {
 variable "docdb_storageEncrypted" {
   description = "Set DocumentDB storage encryption at rest"
   default     = "true"
-  type        = "bool"
+  type        = "string"
 }
 
 variable "docdb_instanceNumber" {
