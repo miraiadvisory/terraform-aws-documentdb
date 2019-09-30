@@ -14,10 +14,17 @@ variable "vpc" {
   type        = "string"
 }
 
-variable "vpn-sg" {
+variable "vpn_sg" {
   description = "The ID of the VPN server"
-  default     = "425503357090/sg-0e1129c05e2ff4718"
+  default     = ""
+  type        = "string"
 }
+
+variable "eb_nodesSecuritygroup" {
+  description = "The ID of the VPN server"
+  default     = ""
+}
+
 
 variable "priv-subnet-1" {
   description = "Private Subnet 1 ID"
