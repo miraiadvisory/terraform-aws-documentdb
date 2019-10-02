@@ -7,7 +7,7 @@ resource "aws_docdb_subnet_group" "docdb" {
     "${var.priv-subnet-3}",
   ]
 
-  tags {
+  tags = {
     Project = "${var.projectname}"
     Stages  = "${var.environment}"
   }
@@ -52,7 +52,7 @@ resource "aws_security_group" "docdb" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags {
+  tags = {
     Project = "${var.projectname}"
     Stages  = "${var.environment}"
   }
@@ -74,7 +74,7 @@ resource "aws_docdb_cluster" "docdb_cluster" {
   db_subnet_group_name            = "${aws_docdb_subnet_group.docdb.name}"
   vpc_security_group_ids          = ["${aws_security_group.docdb.id}"]
 
-  tags {
+  tags = {
     Project = "${var.projectname}"
     Stages  = "${var.environment}"
   }
