@@ -3,8 +3,8 @@ resource "aws_docdb_subnet_group" "docdb" {
 
   subnet_ids = [
     var.priv-subnet-1,
-    var.priv-subnet-2},
-    var.priv-subnet-3}
+    var.priv-subnet-2,
+    var.priv-subnet-3
   ]
 
   tags = {
@@ -40,7 +40,7 @@ resource "aws_security_group" "docdb" {
     protocol  = "tcp"
 
     security_groups = [
-      var.vpn_sg},
+      var.vpn_sg,
       var.eb_nodesSecuritygroup
     ]
   }
