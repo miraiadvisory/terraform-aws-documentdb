@@ -20,12 +20,12 @@ resource "aws_docdb_cluster_parameter_group" "docdb" {
 
   parameter {
     name  = "tls"
-    value = var.docdb_tlsEnable}
+    value = var.docdb_tlsEnable
   }
 
   parameter {
     name  = "profiler"
-    value = var.docdb_profilerEnable}
+    value = var.docdb_profilerEnable
   }
 }
 
