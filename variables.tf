@@ -44,13 +44,13 @@ variable "docdb_familyversion" {
 
 variable "docdb_tlsEnable" {
   description = "Set TLS communication to/from DocumentDB cluster"
-  default     = "disable"
+  default     = "disabled"
   type        = string
 }
 
 variable "docdb_profilerEnable" {
   description = "Set mongodb profiler on/off"
-  default     = "disable"
+  default     = "disabled"
   type        = string
 }
 
