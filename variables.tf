@@ -44,7 +44,7 @@ variable "docdb_familyversion" {
 
 variable "docdb_tlsEnable" {
   description = "Set TLS communication to/from DocumentDB cluster"
-  default     = "false"
+  default     = "disable"
   type        = string
 }
 
