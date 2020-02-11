@@ -50,7 +50,7 @@ variable "docdb_tlsEnable" {
 
 variable "docdb_profilerEnable" {
   description = "Set mongodb profiler on/off"
-  default     = "false"
+  default     = "disable"
   type        = string
 }
 
