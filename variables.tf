@@ -1,46 +1,38 @@
 variable "projectname" {
-  default = ""
   type    = string
 }
 
 variable "environment" {
-  default = ""
   type    = string
 }
 
 variable "vpc" {
   description = "The ID of the VPC where will be created"
-  default     = ""
   type        = string
 }
 
 variable "vpn_sg" {
   description = "The ID of the VPN server"
-  default     = ""
   type        = string
 }
 
 variable "eb_nodesSecuritygroup" {
   description = "The ID of the VPN server"
-  default     = ""
 }
 
 
 variable "priv-subnet-1" {
   description = "Private Subnet 1 ID"
-  default     = ""
   type        = string
 }
 
 variable "priv-subnet-2" {
   description = "Private Subnet 2 ID"
-  default     = ""
   type        = string
 }
 
 variable "priv-subnet-3" {
   description = "Private Subnet 3 ID"
-  default     = ""
   type        = string
 }
 
