@@ -1,4 +1,4 @@
-resource "aws_docdb_subnet_group" "docdb" {
+resource "aws_docdb_subnet_group" "this" {
   name = "${var.projectname}-${var.environment}-documentdb-subnetgroup"
 
   subnet_ids = [
@@ -13,7 +13,7 @@ resource "aws_docdb_subnet_group" "docdb" {
   }
 }
 
-resource "aws_docdb_cluster_parameter_group" "docdb" {
+resource "aws_docdb_cluster_parameter_group" "this" {
   family      = var.docdb_familyversion
   name        = "${var.projectname}-${var.environment}-documentdb-parametergroup"
   description = "Parameter group in use by ${var.projectname}-${var.environment} clusters"
@@ -29,7 +29,7 @@ resource "aws_docdb_cluster_parameter_group" "docdb" {
   }
 }
 
-resource "aws_security_group" "docdb" {
+resource "aws_security_group" "this" {
   name        = "documentdb-sg"
   description = "DocumentDB Security Group"
   vpc_id      = var.vpc
@@ -58,7 +58,7 @@ resource "aws_security_group" "docdb" {
   }
 }
 
-resource "aws_docdb_cluster" "docdb_cluster" {
+resource "aws_docdb_cluster" "this" {
   cluster_identifier              = "${var.projectname}-${var.environment}-documentdb-cluster"
   engine                          = "docdb"
   master_username                 = "${var.projectname}${var.environment}admin"
@@ -70,9 +70,9 @@ resource "aws_docdb_cluster" "docdb_cluster" {
   apply_immediately               = true
   #snapshot_identifier     = "${var.projectname}-${var.environment}-documentdb-snapshot-${replace("${timestamp()}", "/[-| |T|Z|:]/", "")}"
   storage_encrypted               = var.docdb_storageEncrypted
-  db_cluster_parameter_group_name = aws_docdb_cluster_parameter_group.docdb.name
-  db_subnet_group_name            = aws_docdb_subnet_group.docdb.name
-  vpc_security_group_ids          = [aws_security_group.docdb.id]
+  db_cluster_parameter_group_name = aws_docdb_cluster_parameter_group.this.name
+  db_subnet_group_name            = aws_docdb_subnet_group.this.name
+  vpc_security_group_ids          = [aws_security_group.this.id]
 
   tags = {
     Project = var.projectname
@@ -80,9 +80,9 @@ resource "aws_docdb_cluster" "docdb_cluster" {
   }
 }
 
-resource "aws_docdb_cluster_instance" "docdb_cluster_instances" {
+resource "aws_docdb_cluster_instance" "this" {
   count              = var.docdb_instanceNumber
   identifier         = "${var.projectname}-${var.environment}-documentdb-node-${count.index}"
-  cluster_identifier = aws_docdb_cluster.docdb_cluster.id
+  cluster_identifier = aws_docdb_cluster.this.id
   instance_class     = var.docdb_instanceType
 }
