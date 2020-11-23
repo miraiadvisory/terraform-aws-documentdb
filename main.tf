@@ -78,6 +78,12 @@ resource "aws_docdb_cluster" "this" {
     Project = var.projectname
     Stages  = var.environment
   }
+
+  lifecycle {
+    ignore_changes = [
+      master_password
+    ]
+  }
 }
 
 resource "aws_docdb_cluster_instance" "this" {
